@@ -30,7 +30,7 @@ jobs:
       - name: Test
         run: uv run pytest --cov pyfluids --cov-report=xml
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
