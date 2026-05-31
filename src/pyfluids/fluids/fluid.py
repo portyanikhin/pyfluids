@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Self
+
 from CoolProp import AbstractState
 
 from ..config import UnitsSystem
@@ -87,7 +89,7 @@ class Fluid(AbstractFluid):
         first: AbstractFluid,
         second_specific_mass_flow: float,
         second: AbstractFluid,
-    ) -> AbstractFluid:
+    ) -> Self:
         if not self.__is_valid_fluids_for_mixing(first, second):
             raise ValueError("The mixing process is possible only for the same fluids!")
         return super().mixing(
