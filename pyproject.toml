@@ -63,3 +63,6 @@ asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff.lint]
 ignore = ["F403", "F405"]
+
+[tool.ty.analysis]
+allowed-unresolved-imports = ["CoolProp.CoolProp"]
