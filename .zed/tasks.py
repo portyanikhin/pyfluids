@@ -57,10 +57,6 @@ def formatting() -> int:
     return run(["uvx", "ruff", "format", "."])
 
 
-def lint_fix() -> int:
-    return run(["uvx", "ruff", "check", "--fix", "."])
-
-
 def pytest_basetemp() -> str:
     basetemp = PROJECT_ROOT / ".cache" / "pytest-tmp" / str(os.getpid())
     basetemp.parent.mkdir(parents=True, exist_ok=True)
@@ -96,7 +92,6 @@ def coverage() -> int:
 TASKS = {
     "clean": clean,
     "formatting": formatting,
-    "lint-fix": lint_fix,
     "tests": tests,
     "coverage": coverage,
 }
