@@ -266,7 +266,6 @@ version = "2.9.0"
 source = { editable = "." }
 dependencies = [
     { name = "coolprop" },
-    { name = "tomli" },
 ]
 
 [package.dev-dependencies]
@@ -279,10 +278,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "coolprop", specifier = "==7.2.0" },
-    { name = "tomli", specifier = "~=2.3" },
-]
+requires-dist = [{ name = "coolprop", specifier = "==7.2.0" }]
 
 [package.metadata.requires-dev]
 dev = [
