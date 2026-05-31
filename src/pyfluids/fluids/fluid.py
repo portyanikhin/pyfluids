@@ -39,14 +39,16 @@ class Fluid(AbstractFluid):
                 f"{'{0:g}'.format(name.fraction_max)}]{self._fraction_unit}. "
                 f"Entered value = {'{0:g}'.format(fraction)}{self._fraction_unit}."
             )
-        if fraction is None and not name.pure:
-            raise ValueError("Need to define fraction!")
+        if name.pure:
+            resolved_fraction = (
+                100 if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else 1
+            )
+        else:
+            if fraction is None:
+                raise ValueError("Need to define fraction!")
+            resolved_fraction = fraction
         self.__name = name
-        self.__fraction = (
-            (100 if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else 1)
-            if self.__name.pure
-            else fraction
-        )
+        self.__fraction = resolved_fraction
         self.__coolprop_backend = (
             coolprop_backend
             if coolprop_backend is not None
