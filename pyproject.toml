@@ -1,7 +1,7 @@
 [project]
 name = "pyfluids"
 version = "2.9.0"
-description = "Simple, full-featured, lightweight CoolProp wrapper for Python"
+description = "CoolProp wrapper for Python"
 readme = "PyPI.md"
 requires-python = ">=3.9, <3.15"
 license = "MIT"
