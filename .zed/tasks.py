@@ -58,7 +58,7 @@ def formatting() -> int:
 
 
 def lint_fix() -> int:
-    return run(["uvx", "ruff", "check", "--fix", "--ignore", "F403,F405", "."])
+    return run(["uvx", "ruff", "check", "--fix", "."])
 
 
 def pytest_basetemp() -> str:
