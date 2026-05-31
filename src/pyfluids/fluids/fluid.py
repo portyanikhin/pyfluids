@@ -116,10 +116,10 @@ class Fluid(AbstractFluid):
             and first.fraction == second.fraction
         )
 
-    def __eq__(self, other: Fluid) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Fluid) and hash(self) == hash(other)
 
-    def __ne__(self, other: Fluid) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     def __hash__(self) -> int:

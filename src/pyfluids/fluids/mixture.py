@@ -85,10 +85,10 @@ class Mixture(AbstractFluid):
         """
         return self.__fractions
 
-    def __eq__(self, other: Mixture) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Mixture) and hash(self) == hash(other)
 
-    def __ne__(self, other: Mixture) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     def __hash__(self) -> int:

@@ -26,10 +26,10 @@ class AbstractInput(ABC):
         """Input value in SI units."""
         return self.__value
 
-    def __eq__(self, other: AbstractInput) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, AbstractInput) and hash(self) == hash(other)
 
-    def __ne__(self, other: AbstractInput) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     def __hash__(self) -> int:
