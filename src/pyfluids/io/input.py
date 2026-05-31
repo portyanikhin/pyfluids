@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import CoolProp
 
-from .abstract_input import AbstractInput
 from ..config import UnitConverter
+from .abstract_input import AbstractInput
 
 __all__ = ["Input"]
 

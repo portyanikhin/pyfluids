@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from pyfluids import Mixture, FluidsList, Input, Phases
+from pyfluids import FluidsList, Input, Mixture, Phases
 
 
 class TestMixture:
@@ -16,7 +16,7 @@ class TestMixture:
             (
                 [FluidsList.Water],
                 mixture.fractions,
-                "Invalid input! Fluids and fractions " "should be of the same length.",
+                "Invalid input! Fluids and fractions should be of the same length.",
             ),
             (
                 [FluidsList.MPG, FluidsList.MEG],

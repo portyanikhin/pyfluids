@@ -1,6 +1,6 @@
 import pytest
 
-from pyfluids import Mixture, FluidsList, Input
+from pyfluids import FluidsList, Input, Mixture
 
 
 class TestMixtureProcesses:

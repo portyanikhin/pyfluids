@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from pyfluids import PyFluidsConfigBuilder, PyFluidsConfig, UnitsSystem
+from pyfluids import PyFluidsConfig, PyFluidsConfigBuilder, UnitsSystem
 
 INVALID_CONTENT = "Hello, World!"
 

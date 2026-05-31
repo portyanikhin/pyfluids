@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from CoolProp import AbstractState
 
-from .abstract_fluid import AbstractFluid
 from ..config import UnitsSystem
 from ..enums import FluidsList, Mix
+from .abstract_fluid import AbstractFluid
 
 __all__ = ["Fluid"]
 

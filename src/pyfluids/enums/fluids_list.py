@@ -1,8 +1,9 @@
+# cSpell:disable
+
 from enum import Enum
 
-from .mix import Mix
 from ..config import UnitConverter
-
+from .mix import Mix
 
 __all__ = ["FluidsList"]
 

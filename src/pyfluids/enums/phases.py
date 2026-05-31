@@ -1,6 +1,6 @@
-import CoolProp
-
 from enum import Enum
+
+import CoolProp
 
 __all__ = ["Phases"]
 

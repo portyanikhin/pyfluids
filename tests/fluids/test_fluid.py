@@ -7,7 +7,7 @@ from math import isinf, isnan
 import pytest
 from CoolProp.CoolProp import PropsSI
 
-from pyfluids import Fluid, FluidsList, Phases, Input
+from pyfluids import Fluid, FluidsList, Input, Phases
 
 
 class TestFluid:
