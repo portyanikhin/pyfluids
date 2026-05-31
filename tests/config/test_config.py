@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from pyfluids import PyFluidsConfig, PyFluidsConfigBuilder, UnitsSystem
+from pyfluids import Config, ConfigBuilder, UnitsSystem
 
 INVALID_CONTENT = "Hello, World!"
 
@@ -28,17 +28,17 @@ units_system = "SIWithCelsiusAndPercents"
 TOX_INI_CONTENT = PYFLUIDS_INI_CONTENT
 
 
-class TestPyFluidsConfig:
-    def test_pyfluids_config_default_unit_system_is_si_with_celsius_and_percents(self):
-        assert PyFluidsConfig().units_system == UnitsSystem.SIWithCelsiusAndPercents
+class TestConfig:
+    def test_config_default_unit_system_is_si_with_celsius_and_percents(self):
+        assert Config().units_system == UnitsSystem.SIWithCelsiusAndPercents
 
 
-class TestPyFluidsConfigBuilder:
-    config_builder: PyFluidsConfigBuilder = PyFluidsConfigBuilder()
+class TestConfigBuilder:
+    config_builder: ConfigBuilder = ConfigBuilder()
 
     def test_config_builder_is_singleton(self):
-        first_config_builder = PyFluidsConfigBuilder()
-        second_config_builder = PyFluidsConfigBuilder()
+        first_config_builder = ConfigBuilder()
+        second_config_builder = ConfigBuilder()
         assert hash(first_config_builder) == hash(second_config_builder)
 
     def test_build_invokes_once_then_returns_config_from_cache(self, tmp_path: Path):
@@ -56,12 +56,12 @@ class TestPyFluidsConfigBuilder:
         os.chdir(tmp_path)
         monkeypatch.setattr(
             self.config_builder,
-            "_PyFluidsConfigBuilder__config_names",
+            "_ConfigBuilder__config_names",
             ["missing_pyfluids_config"],
         )
         self.config_builder._reset()
         config = self.config_builder.build()
-        assert config == PyFluidsConfig()
+        assert config == Config()
 
     def test_build_from_pyfluids_ini_when_content_is_invalid_raises_value_error(
         self, tmp_path: Path
@@ -73,7 +73,7 @@ class TestPyFluidsConfigBuilder:
         with pytest.raises(ValueError) as e:
             self.config_builder.build()
         assert (
-            "Invalid PyFluids configuration! "
+            "Invalid pyfluids configuration! "
             f"Check your configuration file: {config_file}" in str(e.value)
         )
 
@@ -95,7 +95,7 @@ class TestPyFluidsConfigBuilder:
         with pytest.raises(ValueError) as e:
             self.config_builder.build()
         assert (
-            "Invalid PyFluids configuration! "
+            "Invalid pyfluids configuration! "
             f"Check your configuration file: {config_file}" in str(e.value)
         )
 
@@ -114,7 +114,7 @@ class TestPyFluidsConfigBuilder:
         config_file = tmp_path / "pyproject.toml"
         config_file.write_text(INVALID_CONTENT)
         self.config_builder._reset()
-        assert self.config_builder.build() == PyFluidsConfig()
+        assert self.config_builder.build() == Config()
 
     def test_build_from_pyproject_toml_returns_specified_config(self, tmp_path: Path):
         os.chdir(tmp_path)
@@ -131,7 +131,7 @@ class TestPyFluidsConfigBuilder:
         config_file = tmp_path / "tox.ini"
         config_file.write_text(INVALID_CONTENT)
         self.config_builder._reset()
-        assert self.config_builder.build() == PyFluidsConfig()
+        assert self.config_builder.build() == Config()
 
     def test_build_from_tox_ini_returns_specified_config(self, tmp_path: Path):
         os.chdir(tmp_path)

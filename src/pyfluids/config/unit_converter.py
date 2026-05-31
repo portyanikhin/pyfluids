@@ -1,4 +1,4 @@
-from .config import PyFluidsConfig, PyFluidsConfigBuilder
+from .config import Config, ConfigBuilder
 from .units_system import UnitsSystem
 
 __all__ = ["UnitConverter"]
@@ -9,7 +9,7 @@ class UnitConverter:
 
     def __init__(self):
         """Unit converter."""
-        self.__config: PyFluidsConfig = PyFluidsConfigBuilder().build()
+        self.__config: Config = ConfigBuilder().build()
 
     @property
     def units_system(self) -> UnitsSystem:

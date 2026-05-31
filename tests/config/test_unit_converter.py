@@ -3,11 +3,11 @@ from pathlib import Path
 
 import pytest
 
-from pyfluids import PyFluidsConfigBuilder, UnitConverter, UnitsSystem
+from pyfluids import ConfigBuilder, UnitConverter, UnitsSystem
 
 
 class TestUnitConverter:
-    config_builder: PyFluidsConfigBuilder = PyFluidsConfigBuilder()
+    config_builder: ConfigBuilder = ConfigBuilder()
 
     @pytest.mark.parametrize("units_system", list(UnitsSystem))
     def test_units_system_returns_configured_value(
