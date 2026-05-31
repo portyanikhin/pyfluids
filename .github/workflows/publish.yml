@@ -1,4 +1,4 @@
-name: Publish to PyPI
+name: Publish to pypi.org
 
 on:
   release:
@@ -9,18 +9,18 @@ permissions:
 
 jobs:
   publish:
-    name: Publish to PyPI
+    name: Publish to pypi.org
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
-      - name: Install uv and set the Python version
+      - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
           python-version: 3.14
       - name: Build package
         run: uv build
-      - name: Publish package to PyPI
+      - name: Publish package to pypi.org
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}

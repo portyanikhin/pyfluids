@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  UV_CACHE_DIR: .cache/uv
+
+jobs:
+  ruff:
+    name: Ruff check
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.14"
+      - name: Sync dependencies
+        run: uv sync --locked --all-extras --dev
+      - name: Check import sorting
+        run: uv run ruff check --select I .
+      - name: Check formatting
+        run: uv run ruff format --check .
+      - name: Lint
+        run: uv run ruff check .
+
+  tests:
+    needs: [ruff]
+    name: Tests / ${{ matrix.platform.label }} / python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.platform.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - os: ubuntu-24.04-arm
+            label: linux-aarch64
+          - os: ubuntu-latest
+            label: linux-x86-64
+          - os: macos-latest
+            label: macos-aarch64
+          - os: macos-15-intel
+            label: macos-x86-64
+          - os: windows-11-arm
+            label: windows-aarch64
+          - os: windows-latest
+            label: windows-x86-64
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Sync dependencies
+        run: uv sync --locked --all-extras --dev
+      - name: Test
+        run: uv run python .zed/tasks.py tests
+
+  coverage:
+    needs: [ruff, tests]
+    name: Code coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYFLUIDS_SKIP_OPEN_COVERAGE: "1"
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.14"
+      - name: Sync dependencies
+        run: uv sync --locked --all-extras --dev
+      - name: Generate coverage report
+        run: uv run python .zed/tasks.py coverage
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
