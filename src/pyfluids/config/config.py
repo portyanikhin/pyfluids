@@ -12,23 +12,23 @@ import tomli
 from .singleton import Singleton
 from .units_system import UnitsSystem
 
-__all__ = ["PyFluidsConfig", "PyFluidsConfigBuilder"]
+__all__ = ["Config", "ConfigBuilder"]
 
 
 @dataclass
-class PyFluidsConfig:
-    """PyFluids configuration."""
+class Config:
+    """pyfluids configuration."""
 
     units_system: UnitsSystem = UnitsSystem.SIWithCelsiusAndPercents
 
 
 # noinspection PyBroadException
-class PyFluidsConfigBuilder(metaclass=Singleton):
-    """PyFluids configuration builder."""
+class ConfigBuilder(metaclass=Singleton):
+    """pyfluids configuration builder."""
 
     def __init__(self):
-        """PyFluids configuration builder."""
-        self.__config: PyFluidsConfig | None = None
+        """pyfluids configuration builder."""
+        self.__config: Config | None = None
         self.__config_names: list[str] = [
             "pyfluids.ini",
             "pyfluids.json",
@@ -53,9 +53,9 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
     def __config_data(self) -> str:
         return cast(Path, self.__config_file).read_text(encoding="utf-8")
 
-    def build(self) -> PyFluidsConfig:
+    def build(self) -> Config:
         """
-        Build PyFluids configuration.
+        Build pyfluids configuration.
 
         If the configuration file is not found or an incorrect
         configuration is found in the files "pyproject.toml" or "tox.ini",
@@ -76,16 +76,16 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
     def _reset(self):
         self.__config = None
 
-    def __create_default_config(self) -> PyFluidsConfig:
-        self.__config = PyFluidsConfig()
+    def __create_default_config(self) -> Config:
+        self.__config = Config()
         return self.__config
 
-    def __create_config_from_dict(self, config_dict: dict) -> PyFluidsConfig:
+    def __create_config_from_dict(self, config_dict: dict) -> Config:
         config_dict["units_system"] = UnitsSystem[config_dict["units_system"]]
-        self.__config = PyFluidsConfig(**config_dict)
+        self.__config = Config(**config_dict)
         return self.__config
 
-    def __load_config_from_ini_file(self) -> PyFluidsConfig:
+    def __load_config_from_ini_file(self) -> Config:
         try:
             config_parser = ConfigParser()
             config_parser.read(cast(Path, self.__config_file))
@@ -95,7 +95,7 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
                 self.__raise_invalid_config_exception()
             return self.__create_default_config()
 
-    def __load_config_from_json_file(self) -> PyFluidsConfig:
+    def __load_config_from_json_file(self) -> Config:
         try:
             return self.__create_config_from_dict(
                 json.loads(self.__config_data)["pyfluids"]
@@ -103,7 +103,7 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
         except Exception:
             self.__raise_invalid_config_exception()
 
-    def __load_config_from_toml_file(self) -> PyFluidsConfig:
+    def __load_config_from_toml_file(self) -> Config:
         try:
             return self.__create_config_from_dict(
                 tomli.loads(self.__config_data)["tool"]["pyfluids"]
@@ -113,6 +113,6 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
 
     def __raise_invalid_config_exception(self) -> NoReturn:
         raise ValueError(
-            "Invalid PyFluids configuration! "
+            "Invalid pyfluids configuration! "
             f"Check your configuration file: {self.__config_file}"
         )
