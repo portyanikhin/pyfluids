@@ -46,9 +46,14 @@ class TestPyFluidsConfigBuilder:
         assert first_config == second_config
 
     def test_build_when_config_file_is_not_found_returns_default_config(
-        self, tmp_path: Path
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
     ):
         os.chdir(tmp_path)
+        monkeypatch.setattr(
+            self.config_builder,
+            "_PyFluidsConfigBuilder__config_names",
+            ["missing_pyfluids_config"],
+        )
         self.config_builder._reset()
         config = self.config_builder.build()
         assert config == PyFluidsConfig()
