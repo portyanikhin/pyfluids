@@ -14,7 +14,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 def run(command: list[str], env: Optional[dict[str, str]] = None) -> int:
     task_env = os.environ.copy()
     task_env.setdefault("UV_CACHE_DIR", str(PROJECT_ROOT / ".cache" / "uv"))
-    task_env.setdefault("UV_TOOL_DIR", str(PROJECT_ROOT / ".cache" / "uv" / "tools"))
 
     if env is not None:
         task_env.update(env)
@@ -50,11 +49,11 @@ def clean() -> int:
 
 
 def formatting() -> int:
-    result = run(["uvx", "ruff", "check", "--select", "I", "--fix", "."])
+    result = run(["uv", "run", "ruff", "check", "--select", "I", "--fix", "."])
     if result != 0:
         return result
 
-    return run(["uvx", "ruff", "format", "."])
+    return run(["uv", "run", "ruff", "format", "."])
 
 
 def pytest_basetemp() -> str:

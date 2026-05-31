@@ -29,16 +29,14 @@
     "args": ["run", "python", ".zed/tasks.py", "formatting"],
     "env": {
       "UV_CACHE_DIR": ".cache/uv",
-      "UV_TOOL_DIR": ".cache/uv/tools",
     },
   },
   {
     "label": "Lint Fix",
-    "command": "uvx",
-    "args": ["ruff", "check", "--fix", "."],
+    "command": "uv",
+    "args": ["run", "ruff", "check", "--fix", "."],
     "env": {
       "UV_CACHE_DIR": ".cache/uv",
-      "UV_TOOL_DIR": ".cache/uv/tools",
     },
   },
   {
