@@ -4,6 +4,7 @@ import json
 from configparser import ConfigParser
 from os.path import abspath
 from pathlib import Path
+from typing import NoReturn, cast
 
 import tomli
 
@@ -43,7 +44,7 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
 
     @property
     def __config_data(self) -> str:
-        return self.__config_file.read_text(encoding="utf-8")
+        return cast(Path, self.__config_file).read_text(encoding="utf-8")
 
     def build(self) -> PyFluidsConfig:
         """
@@ -80,10 +81,10 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
     def __load_config_from_ini_file(self) -> PyFluidsConfig:
         try:
             config_parser = ConfigParser()
-            config_parser.read(self.__config_file)
+            config_parser.read(cast(Path, self.__config_file))
             return self.__create_config_from_dict(dict(config_parser.items("pyfluids")))
         except Exception:
-            if self.__config_file.name.startswith("pyfluids"):
+            if cast(Path, self.__config_file).name.startswith("pyfluids"):
                 self.__raise_invalid_config_exception()
             return self.__create_default_config()
 
@@ -103,7 +104,7 @@ class PyFluidsConfigBuilder(metaclass=Singleton):
         except Exception:
             return self.__create_default_config()
 
-    def __raise_invalid_config_exception(self):
+    def __raise_invalid_config_exception(self) -> NoReturn:
         raise ValueError(
             "Invalid PyFluids configuration! "
             f"Check your configuration file: {self.__config_file}"
