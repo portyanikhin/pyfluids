@@ -40,6 +40,14 @@
     },
   },
   {
+    "label": "Type Check",
+    "command": "uv",
+    "args": ["run", "ty", "check"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+  {
     "label": "Tests",
     "command": "uv",
     "args": ["run", "python", ".zed/tasks.py", "tests"],
