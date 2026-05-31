@@ -11,7 +11,7 @@ class FluidExtended(Fluid):
     def __init__(
         self,
         name: FluidsList,
-        fraction: float = None,
+        fraction: float | None = None,
         coolprop_backend: str | None = None,
     ):
         super().__init__(name, fraction, coolprop_backend)
