@@ -165,14 +165,8 @@ class TestFluid:
             )
         )
         assert all(
-            [
-                (
-                    True
-                    if actual[i] is None and expected[i] is None
-                    else abs(actual[i] - expected[i]) < 1e-9
-                )
-                for i in range(len(actual))
-            ]
+            self.is_equal_or_close(actual_value, expected_value)
+            for actual_value, expected_value in zip(actual, expected)
         )
         assert (
             self.fluid.kinematic_viscosity
@@ -288,6 +282,15 @@ class TestFluid:
             return self.checked_value(value, output_key)
         except ValueError:
             return None
+
+    @staticmethod
+    def is_equal_or_close(
+        actual: float | None,
+        expected: float | None,
+    ) -> bool:
+        if actual is None or expected is None:
+            return actual is expected
+        return abs(actual - expected) < 1e-9
 
     @staticmethod
     def checked_value(value: float, output_key: str) -> float | None:
