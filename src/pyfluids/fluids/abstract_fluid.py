@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from abc import ABC, abstractmethod
+from typing import Self, cast
 
 import CoolProp
 from CoolProp import AbstractState
@@ -308,11 +309,11 @@ class AbstractFluid(ABC):
         """Returns a new fluid instance with no defined state."""
         raise NotImplementedError  # pragma: no cover
 
-    def clone(self) -> AbstractFluid:
+    def clone(self) -> Self:
         """Performs deep (full) copy of the fluid instance."""
         return self.with_state(*self._inputs)
 
-    def with_state(self, first_input: Input, second_input: Input) -> AbstractFluid:
+    def with_state(self, first_input: Input, second_input: Input) -> Self:
         """
         Returns a new fluid instance with a defined state.
 
@@ -325,7 +326,7 @@ class AbstractFluid(ABC):
         if self.__specified_phase is not None:
             fluid.specify_phase(self.__specified_phase)
         fluid.update(first_input, second_input)
-        return fluid
+        return cast(Self, fluid)
 
     def update(self, first_input: Input, second_input: Input):
         """
@@ -368,7 +369,7 @@ class AbstractFluid(ABC):
         self.__surface_tension = None
         self.__temperature = None
 
-    def specify_phase(self, phase: Phases) -> AbstractFluid:
+    def specify_phase(self, phase: Phases) -> Self:
         """
         Specify the phase state for all further calculations.
 
@@ -379,7 +380,7 @@ class AbstractFluid(ABC):
         self.__specified_phase = phase
         return self
 
-    def unspecify_phase(self) -> AbstractFluid:
+    def unspecify_phase(self) -> Self:
         """
         Unspecify the phase state and go back to calculating it based on the inputs.
 
@@ -389,7 +390,7 @@ class AbstractFluid(ABC):
         self.__specified_phase = None
         return self
 
-    def isentropic_compression_to_pressure(self, pressure: float) -> AbstractFluid:
+    def isentropic_compression_to_pressure(self, pressure: float) -> Self:
         """
         The process of isentropic compression to given pressure.
 
@@ -405,7 +406,7 @@ class AbstractFluid(ABC):
 
     def compression_to_pressure(
         self, pressure: float, isentropic_efficiency: float
-    ) -> AbstractFluid:
+    ) -> Self:
         """
         The process of compression to given pressure.
 
@@ -432,7 +433,7 @@ class AbstractFluid(ABC):
             ),
         )
 
-    def isenthalpic_expansion_to_pressure(self, pressure: float) -> AbstractFluid:
+    def isenthalpic_expansion_to_pressure(self, pressure: float) -> Self:
         """
         The process of isenthalpic expansion to given pressure.
 
@@ -446,7 +447,7 @@ class AbstractFluid(ABC):
             )
         return self.with_state(Input.pressure(pressure), Input.enthalpy(self.enthalpy))
 
-    def isentropic_expansion_to_pressure(self, pressure: float) -> AbstractFluid:
+    def isentropic_expansion_to_pressure(self, pressure: float) -> Self:
         """
         The process of isentropic expansion to given pressure.
 
@@ -462,7 +463,7 @@ class AbstractFluid(ABC):
 
     def expansion_to_pressure(
         self, pressure: float, isentropic_efficiency: float
-    ) -> AbstractFluid:
+    ) -> Self:
         """
         The process of expansion to given pressure.
 
@@ -491,7 +492,7 @@ class AbstractFluid(ABC):
 
     def cooling_to_temperature(
         self, temperature: float, pressure_drop: float = 0
-    ) -> AbstractFluid:
+    ) -> Self:
         """
         The process of cooling to given temperature.
 
@@ -507,9 +508,7 @@ class AbstractFluid(ABC):
             )
         return self.__heat_transfer_to_temperature(temperature, pressure_drop)
 
-    def cooling_to_enthalpy(
-        self, enthalpy: float, pressure_drop: float = 0
-    ) -> AbstractFluid:
+    def cooling_to_enthalpy(self, enthalpy: float, pressure_drop: float = 0) -> Self:
         """
         The process of cooling to given enthalpy.
 
@@ -526,7 +525,7 @@ class AbstractFluid(ABC):
 
     def heating_to_temperature(
         self, temperature: float, pressure_drop: float = 0
-    ) -> AbstractFluid:
+    ) -> Self:
         """
         The process of heating to given temperature.
 
@@ -542,9 +541,7 @@ class AbstractFluid(ABC):
             )
         return self.__heat_transfer_to_temperature(temperature, pressure_drop)
 
-    def heating_to_enthalpy(
-        self, enthalpy: float, pressure_drop: float = 0
-    ) -> AbstractFluid:
+    def heating_to_enthalpy(self, enthalpy: float, pressure_drop: float = 0) -> Self:
         """
         The process of heating to given enthalpy.
 
@@ -559,7 +556,7 @@ class AbstractFluid(ABC):
             )
         return self.__heat_transfer_to_enthalpy(enthalpy, pressure_drop)
 
-    def bubble_point_at_pressure(self, pressure: float) -> AbstractFluid:
+    def bubble_point_at_pressure(self, pressure: float) -> Self:
         """
         Bubble point at given pressure.
 
@@ -568,7 +565,7 @@ class AbstractFluid(ABC):
         """
         return self.with_state(Input.pressure(pressure), Input.quality(0))
 
-    def bubble_point_at_temperature(self, temperature: float) -> AbstractFluid:
+    def bubble_point_at_temperature(self, temperature: float) -> Self:
         """
         Bubble point at given temperature.
 
@@ -578,7 +575,7 @@ class AbstractFluid(ABC):
         """
         return self.with_state(Input.temperature(temperature), Input.quality(0))
 
-    def dew_point_at_pressure(self, pressure: float) -> AbstractFluid:
+    def dew_point_at_pressure(self, pressure: float) -> Self:
         """
         Dew point at given pressure.
 
@@ -592,7 +589,7 @@ class AbstractFluid(ABC):
             ),
         )
 
-    def dew_point_at_temperature(self, temperature: float) -> AbstractFluid:
+    def dew_point_at_temperature(self, temperature: float) -> Self:
         """
         Dew point at given temperature.
 
@@ -607,9 +604,7 @@ class AbstractFluid(ABC):
             ),
         )
 
-    def two_phase_point_at_pressure(
-        self, pressure: float, quality: float
-    ) -> AbstractFluid:
+    def two_phase_point_at_pressure(self, pressure: float, quality: float) -> Self:
         """
         Two phase point at given pressure.
 
@@ -626,7 +621,7 @@ class AbstractFluid(ABC):
         first: AbstractFluid,
         second_specific_mass_flow: float,
         second: AbstractFluid,
-    ) -> AbstractFluid:
+    ) -> Self:
         """
         The mixing process.
 
@@ -706,7 +701,7 @@ class AbstractFluid(ABC):
 
     def __heat_transfer_to_temperature(
         self, temperature: float, pressure_drop: float
-    ) -> AbstractFluid:
+    ) -> Self:
         self.__check_pressure_drop(pressure_drop)
         return self.with_state(
             Input.pressure(self.pressure - pressure_drop),
@@ -715,7 +710,7 @@ class AbstractFluid(ABC):
 
     def __heat_transfer_to_enthalpy(
         self, enthalpy: float, pressure_drop: float
-    ) -> AbstractFluid:
+    ) -> Self:
         self.__check_pressure_drop(pressure_drop)
         return self.with_state(
             Input.pressure(self.pressure - pressure_drop),
