@@ -30,8 +30,24 @@ jobs:
       - name: Lint
         run: uv run ruff check .
 
+  ty:
+    name: Check with ty
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.14"
+      - name: Sync dependencies
+        run: uv sync --locked --all-extras --dev
+      - name: Check with ty
+        run: uv run ty check
+
   tests:
-    needs: [ruff]
+    needs: [ruff, ty]
     name: Tests / ${{ matrix.platform.label }} / python ${{ matrix.python-version }}
     runs-on: ${{ matrix.platform.os }}
     timeout-minutes: 45
@@ -66,7 +82,7 @@ jobs:
         run: uv run python .zed/tasks.py tests
 
   coverage:
-    needs: [ruff, tests]
+    needs: [ruff, ty, tests]
     name: Code coverage
     runs-on: ubuntu-latest
     timeout-minutes: 45
