@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import json
+import tomllib
 from configparser import ConfigParser
 from dataclasses import dataclass
 from os.path import abspath
 from pathlib import Path
 from typing import NoReturn, cast
-
-import tomli
 
 from .singleton import Singleton
 from .units_system import UnitsSystem
@@ -106,7 +105,7 @@ class ConfigBuilder(metaclass=Singleton):
     def __load_config_from_toml_file(self) -> Config:
         try:
             return self.__create_config_from_dict(
-                tomli.loads(self.__config_data)["tool"]["pyfluids"]
+                tomllib.loads(self.__config_data)["tool"]["pyfluids"]
             )
         except Exception:
             return self.__create_default_config()
