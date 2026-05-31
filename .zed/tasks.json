@@ -1,0 +1,60 @@
+[
+  {
+    "label": "Sync",
+    "command": "uv",
+    "args": ["sync", "--locked", "--all-extras", "--dev"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+  {
+    "label": "Build",
+    "command": "uv",
+    "args": ["build"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+  {
+    "label": "Clean",
+    "command": "uv",
+    "args": ["run", "python", ".zed/tasks.py", "clean"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+  {
+    "label": "Formatting",
+    "command": "uv",
+    "args": ["run", "python", ".zed/tasks.py", "formatting"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+      "UV_TOOL_DIR": ".cache/uv/tools",
+    },
+  },
+  {
+    "label": "Lint Fix",
+    "command": "uv",
+    "args": ["run", "python", ".zed/tasks.py", "lint-fix"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+      "UV_TOOL_DIR": ".cache/uv/tools",
+    },
+  },
+  {
+    "label": "Tests",
+    "command": "uv",
+    "args": ["run", "python", ".zed/tasks.py", "tests"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+  {
+    "label": "Coverage",
+    "command": "uv",
+    "args": ["run", "python", ".zed/tasks.py", "coverage"],
+    "env": {
+      "UV_CACHE_DIR": ".cache/uv",
+    },
+  },
+]
