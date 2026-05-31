@@ -1,5 +1,4 @@
-from .pyfluids_config import PyFluidsConfig
-from .pyfluids_config_builder import PyFluidsConfigBuilder
+from .config import PyFluidsConfig, PyFluidsConfigBuilder
 from .units_system import UnitsSystem
 
 __all__ = ["UnitConverter"]

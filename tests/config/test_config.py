@@ -28,6 +28,11 @@ units_system = "SIWithCelsiusAndPercents"
 TOX_INI_CONTENT = PYFLUIDS_INI_CONTENT
 
 
+class TestPyFluidsConfig:
+    def test_pyfluids_config_default_unit_system_is_si_with_celsius_and_percents(self):
+        assert PyFluidsConfig().units_system == UnitsSystem.SIWithCelsiusAndPercents
+
+
 class TestPyFluidsConfigBuilder:
     config_builder: PyFluidsConfigBuilder = PyFluidsConfigBuilder()
 

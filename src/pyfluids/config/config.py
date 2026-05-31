@@ -2,17 +2,24 @@ from __future__ import annotations
 
 import json
 from configparser import ConfigParser
+from dataclasses import dataclass
 from os.path import abspath
 from pathlib import Path
 from typing import NoReturn, cast
 
 import tomli
 
-from .pyfluids_config import PyFluidsConfig
 from .singleton import Singleton
 from .units_system import UnitsSystem
 
-__all__ = ["PyFluidsConfigBuilder"]
+__all__ = ["PyFluidsConfig", "PyFluidsConfigBuilder"]
+
+
+@dataclass
+class PyFluidsConfig:
+    """PyFluids configuration."""
+
+    units_system: UnitsSystem = UnitsSystem.SIWithCelsiusAndPercents
 
 
 # noinspection PyBroadException
