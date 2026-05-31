@@ -1,6 +1,6 @@
 [project]
 name = "pyfluids"
-version = "2.9.0"
+version = "3.0.0"
 description = "CoolProp wrapper for Python"
 readme = "PyPI.md"
 requires-python = ">=3.11, <3.15"
