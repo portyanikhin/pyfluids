@@ -12,11 +12,11 @@ class FluidsList(Enum):
     """List of CoolProp fluids.
 
     See more info about CoolProp `pure and pseudo-pure fluids
-    <http://www.coolprop.org/fluid_properties/PurePseudoPure.html>`_,
+    <https://www.coolprop.org/fluid_properties/PurePseudoPure.html>`_,
     `incompressible fluids
-    <http://www.coolprop.org/fluid_properties/Incompressibles.html>`_
+    <https://www.coolprop.org/fluid_properties/Incompressibles.html>`_
     and `predefined mixtures
-    <http://www.coolprop.org/coolprop/HighLevelAPI.html#predefined-mixtures>`_.
+    <https://www.coolprop.org/coolprop/HighLevelAPI.html#predefined-mixtures>`_.
     """
 
     # Pure and pseudo-pure fluids

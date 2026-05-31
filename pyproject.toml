@@ -51,10 +51,10 @@ dependencies = ["CoolProp==7.2.0", "tomli~=2.3"]
 dev = ["pytest", "pytest-asyncio", "pytest-cov"]
 
 [project.urls]
-homepage = "https://github.com/portyanikhin/PyFluids"
-source = "https://github.com/portyanikhin/PyFluids"
-releasenotes = "https://github.com/portyanikhin/PyFluids/releases"
-documentation = "https://github.com/portyanikhin/PyFluids"
+homepage = "https://github.com/portyanikhin/pyfluids"
+source = "https://github.com/portyanikhin/pyfluids"
+releasenotes = "https://github.com/portyanikhin/pyfluids/releases"
+documentation = "https://github.com/portyanikhin/pyfluids"
 
 [build-system]
 requires = ["uv_build~=0.9"]
