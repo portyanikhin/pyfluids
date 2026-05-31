@@ -37,6 +37,7 @@
     - [Deep cloning](#deep-cloning)
     - [Adding other properties](#adding-other-properties)
     - [Adding other inputs](#adding-other-inputs)
+- [License](#license)
 
 ## How to install
 
@@ -406,3 +407,10 @@ print(origin == clone)  # False
 
 - [An example for the `Fluid` and `Mixture`](https://github.com/portyanikhin/pyfluids/blob/main/tests/io/test_input_extended.py)
 - [An example for the `HumidAir`](https://github.com/portyanikhin/pyfluids/blob/main/tests/io/test_input_humid_air_extended.py)
+
+#### License
+
+<sup>
+This project is licensed under
+<a href="https://github.com/portyanikhin/pyfluids/blob/main/LICENSE">MIT License</a>
+</sup>
