@@ -15,12 +15,12 @@
 - [How to install](#how-to-install)
 - [Project structure](#project-structure)
 - [Units systems](#units-systems)
-  - [Available units systems](#available-units-systems)
-  - [Available types of configuration files](#available-types-of-configuration-files)
-    - [`pyfluids.ini` example](#pyfluidsini-example)
-    - [`pyfluids.json` example](#pyfluidsjson-example)
-    - [`pyproject.toml` example](#pyprojecttoml-example)
-    - [`tox.ini` example](#toxini-example)
+    - [Available units systems](#available-units-systems)
+    - [Available types of configuration files](#available-types-of-configuration-files)
+        - [`pyfluids.ini` example](#pyfluidsini-example)
+        - [`pyfluids.json` example](#pyfluidsjson-example)
+        - [`pyproject.toml` example](#pyprojecttoml-example)
+        - [`tox.ini` example](#toxini-example)
 - [List of properties](#list-of-properties)
     - [Properties of `Fluid` and `Mixture` instances](#properties-of-fluid-and-mixture-instances)
     - [Properties of `HumidAir` instances](#properties-of-humidair-instances)
@@ -50,36 +50,36 @@ pip install pyfluids
 
 ## Project structure
 
-* `Fluid` class - an implementation of pure fluids and binary mixtures.
-* `Mixture` class - an implementation of mixtures with pure fluids components.
-* `FluidsList` enum - the list of all available fluids.
-* `Input` class - the inputs for the `Fluid` and `Mixture` classes.
-* `HumidAir` class - an implementation of real humid air.
-* `InputHumidAir` class - the inputs for the `HumidAir` class.
+- `Fluid` class - an implementation of pure fluids and binary mixtures
+- `Mixture` class - an implementation of mixtures with pure fluids components
+- `FluidsList` enum - the list of all available fluids
+- `Input` class - the inputs for the `Fluid` and `Mixture` classes
+- `HumidAir` class - an implementation of real humid air
+- `InputHumidAir` class - the inputs for the `HumidAir` class
 
 ## Units systems
 
-Using a configuration file, you can choose the units system 
+Using a configuration file, you can choose the units system
 that will be used in your project (for both inputs and outputs of `PyFluids`).
 
 ### Available units systems
 
 - **SI (`UnitsSystem.SI`):**
-    - temperature unit - Kelvin _(K)_;
-    - decimal fraction unit - dimensionless _(from 0 to 1)_;
+    - temperature unit - Kelvin _(K)_
+    - decimal fraction unit - dimensionless _(from 0 to 1)_
 - **SI with Celsius (`UnitsSystem.SIWithCelsius`):**
-    - temperature unit - degree Celsius _(°C)_;
-    - decimal fraction unit - dimensionless _(from 0 to 1)_;
+    - temperature unit - degree Celsius _(°C)_
+    - decimal fraction unit - dimensionless _(from 0 to 1)_
 - **SI with Celsius and percents (`UnitsSystem.SIWithCelsiusAndPercents`) _- by default_:**
-    - temperature unit - degree Celsius _(°C)_;
-    - decimal fraction unit - percent _(%, from 0 to 100)_.
+    - temperature unit - degree Celsius _(°C)_
+    - decimal fraction unit - percent _(%, from 0 to 100)_
 
 ### Available types of configuration files
 
-- `pyfluids.ini`;
-- `pyfluids.json`;
-- `pyproject.toml`;
-- `tox.ini`.
+- `pyfluids.ini`
+- `pyfluids.json`
+- `pyproject.toml`
+- `tox.ini`
 
 #### `pyfluids.ini` example
 
@@ -90,7 +90,7 @@ units_system = SI
 
 #### `pyfluids.json` example
 
-```json5
+```json
 {
     "pyfluids": {
         "units_system": "SIWithCelsius"
@@ -119,55 +119,55 @@ the `Fluid`, `Mixture` or `HumidAir` classes (see [how to add other properties](
 
 ### Properties of `Fluid` and `Mixture` instances
 
-* `compressibility` - compressibility factor _(dimensionless)_.
-* `conductivity` - thermal conductivity _(W/m/K)_.
-* `critical_pressure` - absolute pressure at the critical point _(Pa)_.
-* `critical_temperature` - temperature at the critical point _(by default, °C; see [how to change it](#units-systems))_.
-* `density` - mass density _(kg/m3)_.
-* `dynamic_viscosity` - dynamic viscosity _(Pa*s)_.
-* `enthalpy` - mass specific enthalpy _(J/kg)_.
-* `entropy` - mass specific entropy _(J/kg/K)_.
-* `freezing_temperature` - temperature at the freezing point (for incompressible fluids) _(by default, °C; see [how to change it](#units-systems))_.
-* `internal_energy` - mass specific internal energy _(J/kg)_.
-* `kinematic_viscosity` - kinematic viscosity _(m2/s)_.
-* `max_pressure` - maximum pressure limit _(Pa)_.
-* `max_temperature` - maximum temperature limit _(by default, °C; see [how to change it](#units-systems))_.
-* `min_pressure` - minimum pressure limit _(Pa)_.
-* `min_temperature` - minimum temperature limit _(by default, °C; see [how to change it](#units-systems))_.
-* `molar_mass` - molar mass _(kg/mol)_.
-* `phase` - phase state _(enum)_.
-* `prandtl` - Prandtl number _(dimensionless)_.
-* `pressure` - absolute pressure _(Pa)_.
-* `quality` - mass vapor quality _(by default, %; see [how to change it](#units-systems))_.
-* `sound_speed` - sound speed _(m/s)_.
-* `specific_heat` - mass specific constant pressure specific heat _(J/kg/K)_.
-* `specific_volume` - mass specific volume _(m3/kg)_.
-* `surface_tension` - surface tension _(N/m)_.
-* `temperature` - temperature _(by default, °C; see [how to change it](#units-systems))_.
-* `triple_pressure` - absolute pressure at the triple point _(Pa)_.
-* `triple_temperature` - temperature at the triple point _(by default, °C; see [how to change it](#units-systems))_.
-* `units_system` - configured units system _(enum)_.
+- `compressibility` - compressibility factor _(dimensionless)_
+- `conductivity` - thermal conductivity _(W/m/K)_
+- `critical_pressure` - absolute pressure at the critical point _(Pa)_
+- `critical_temperature` - temperature at the critical point _(by default, °C; see [how to change it](#units-systems))_
+- `density` - mass density _(kg/m3)_
+- `dynamic_viscosity` - dynamic viscosity _(Pa\*s)_
+- `enthalpy` - mass specific enthalpy _(J/kg)_
+- `entropy` - mass specific entropy _(J/kg/K)_
+- `freezing_temperature` - temperature at the freezing point (for incompressible fluids) _(by default, °C; see [how to change it](#units-systems))_
+- `internal_energy` - mass specific internal energy _(J/kg)_
+- `kinematic_viscosity` - kinematic viscosity _(m2/s)_
+- `max_pressure` - maximum pressure limit _(Pa)_
+- `max_temperature` - maximum temperature limit _(by default, °C; see [how to change it](#units-systems))_
+- `min_pressure` - minimum pressure limit _(Pa)_
+- `min_temperature` - minimum temperature limit _(by default, °C; see [how to change it](#units-systems))_
+- `molar_mass` - molar mass _(kg/mol)_
+- `phase` - phase state _(enum)_
+- `prandtl` - Prandtl number _(dimensionless)_
+- `pressure` - absolute pressure _(Pa)_
+- `quality` - mass vapor quality _(by default, %; see [how to change it](#units-systems))_
+- `sound_speed` - sound speed _(m/s)_
+- `specific_heat` - mass specific constant pressure specific heat _(J/kg/K)_
+- `specific_volume` - mass specific volume _(m3/kg)_
+- `surface_tension` - surface tension _(N/m)_
+- `temperature` - temperature _(by default, °C; see [how to change it](#units-systems))_
+- `triple_pressure` - absolute pressure at the triple point _(Pa)_
+- `triple_temperature` - temperature at the triple point _(by default, °C; see [how to change it](#units-systems))_
+- `units_system` - configured units system _(enum)_
 
 ### Properties of `HumidAir` instances
 
-* `compressibility` - compressibility factor _(dimensionless)_.
-* `conductivity` - thermal conductivity _(W/m/K)_.
-* `density` - mass density per humid air unit _(kg/m3)_.
-* `dew_temperature` - dew-point temperature _(by default, °C; see [how to change it](#units-systems))_.
-* `dynamic_viscosity` - dynamic viscosity _(Pa*s)_.
-* `enthalpy` - mass specific enthalpy per humid air _(J/kg)_.
-* `entropy` - mass specific entropy per humid air _(J/kg/K)_.
-* `humidity` - absolute humidity ratio _(kg/kg d.a.)_.
-* `kinematic_viscosity` - kinematic viscosity _(m2/s)_.
-* `partial_pressure` - partial pressure of water vapor _(Pa)_.
-* `prandtl` - Prandtl number _(dimensionless)_.
-* `pressure` - absolute pressure _(Pa)_.
-* `relative_humidity` - relative humidity ratio _(by default, %; see [how to change it](#units-systems))_.
-* `specific_heat` - mass specific constant pressure specific heat per humid air _(J/kg/K)_.
-* `specific_volume` - mass specific volume per humid air unit _(m3/kg)_.
-* `temperature` - dry-bulb temperature _(by default, °C; see [how to change it](#units-systems))_.
-* `wet_bulb_temperature` - wet-bulb temperature _(by default, °C; see [how to change it](#units-systems))_.
-* `units_system` - configured units system _(enum)_.
+- `compressibility` - compressibility factor _(dimensionless)_
+- `conductivity` - thermal conductivity _(W/m/K)_
+- `density` - mass density per humid air unit _(kg/m3)_
+- `dew_temperature` - dew-point temperature _(by default, °C; see [how to change it](#units-systems))_
+- `dynamic_viscosity` - dynamic viscosity _(Pa\*s)_
+- `enthalpy` - mass specific enthalpy per humid air _(J/kg)_
+- `entropy` - mass specific entropy per humid air _(J/kg/K)_
+- `humidity` - absolute humidity ratio _(kg/kg d.a.)_
+- `kinematic_viscosity` - kinematic viscosity _(m2/s)_
+- `partial_pressure` - partial pressure of water vapor _(Pa)_
+- `prandtl` - Prandtl number _(dimensionless)_
+- `pressure` - absolute pressure _(Pa)_
+- `relative_humidity` - relative humidity ratio _(by default, %; see [how to change it](#units-systems))_
+- `specific_heat` - mass specific constant pressure specific heat per humid air _(J/kg/K)_
+- `specific_volume` - mass specific volume per humid air unit _(m3/kg)_
+- `temperature` - dry-bulb temperature _(by default, °C; see [how to change it](#units-systems))_
+- `wet_bulb_temperature` - wet-bulb temperature _(by default, °C; see [how to change it](#units-systems))_
+- `units_system` - configured units system _(enum)_
 
 ## List of methods
 
@@ -175,67 +175,67 @@ For more information, see the docstrings.
 
 ### Methods of `Fluid` instances
 
-* `factory` - returns a new fluid instance with no defined state.
-* `with_state` - returns a new fluid instance with a defined state.
-* `update` - updates the state of the fluid.
-* `reset` - resets all non-trivial properties.
-* `specify_phase` - specify the phase state for all further calculations.
-* `unspecify_phase` - unspecify the phase state and go back to calculating it based on the inputs.
-* `clone` - performs deep (full) copy of the fluid instance.
-* `isentropic_compression_to_pressure` - the process of isentropic compression to given pressure.
-* `compression_to_pressure` - the process of compression to given pressure.
-* `isenthalpic_expansion_to_pressure` - the process of isenthalpic expansion to given pressure.
-* `isentropic_expansion_to_pressure` - the process of isentropic expansion to given pressure.
-* `expansion_to_pressure` - the process of expansion to given pressure.
-* `cooling_to_temperature` - the process of cooling to given temperature.
-* `cooling_to_enthalpy` - the process of cooling to given enthalpy.
-* `heating_to_temperature` - the process of heating to given temperature.
-* `heating_to_enthalpy` - the process of heating to given enthalpy.
-* `bubble_point_at_pressure` - bubble point at given pressure.
-* `bubble_point_at_temperature` - bubble point at given temperature.
-* `dew_point_at_pressure` - dew point at given pressure.
-* `dew_point_at_temperature` - dew point at given temperature.
-* `two_phase_point_at_pressure` - two-phase point at given pressure.
-* `mixing` - the mixing process.
-* `as_json` - converts the fluid instance to a JSON string.
-* `as_dict` - converts the fluid instance to a dict.
+- `factory` - returns a new fluid instance with no defined state
+- `with_state` - returns a new fluid instance with a defined state
+- `update` - updates the state of the fluid
+- `reset` - resets all non-trivial properties
+- `specify_phase` - specify the phase state for all further calculations
+- `unspecify_phase` - unspecify the phase state and go back to calculating it based on the inputs
+- `clone` - performs deep (full) copy of the fluid instance
+- `isentropic_compression_to_pressure` - the process of isentropic compression to given pressure
+- `compression_to_pressure` - the process of compression to given pressure
+- `isenthalpic_expansion_to_pressure` - the process of isenthalpic expansion to given pressure
+- `isentropic_expansion_to_pressure` - the process of isentropic expansion to given pressure
+- `expansion_to_pressure` - the process of expansion to given pressure
+- `cooling_to_temperature` - the process of cooling to given temperature
+- `cooling_to_enthalpy` - the process of cooling to given enthalpy
+- `heating_to_temperature` - the process of heating to given temperature
+- `heating_to_enthalpy` - the process of heating to given enthalpy
+- `bubble_point_at_pressure` - bubble point at given pressure
+- `bubble_point_at_temperature` - bubble point at given temperature
+- `dew_point_at_pressure` - dew point at given pressure
+- `dew_point_at_temperature` - dew point at given temperature
+- `two_phase_point_at_pressure` - two-phase point at given pressure
+- `mixing` - the mixing process
+- `as_json` - converts the fluid instance to a JSON string
+- `as_dict` - converts the fluid instance to a dict
 
 ### Methods of `Mixture` instances
 
-* `factory` - returns a new mixture instance with no defined state.
-* `with_state` - returns a new mixture instance with a defined state.
-* `update` - updates the state of the mixture.
-* `reset` - resets all non-trivial properties.
-* `specify_phase` - specify the phase state for all further calculations.
-* `unspecify_phase` - unspecify the phase state and go back to calculating it based on the inputs.
-* `clone` - performs deep (full) copy of the mixture instance.
-* `cooling_to_temperature` - the process of cooling to given temperature.
-* `heating_to_temperature` - the process of heating to given temperature.
-* `as_json` - converts the mixture instance to a JSON string.
-* `as_dict` - converts the mixture instance to a dict.
+- `factory` - returns a new mixture instance with no defined state
+- `with_state` - returns a new mixture instance with a defined state
+- `update` - updates the state of the mixture
+- `reset` - resets all non-trivial properties
+- `specify_phase` - specify the phase state for all further calculations
+- `unspecify_phase` - unspecify the phase state and go back to calculating it based on the inputs
+- `clone` - performs deep (full) copy of the mixture instance
+- `cooling_to_temperature` - the process of cooling to given temperature
+- `heating_to_temperature` - the process of heating to given temperature
+- `as_json` - converts the mixture instance to a JSON string
+- `as_dict` - converts the mixture instance to a dict
 
 ### Methods of `HumidAir` instances
 
-* `factory` - returns a new humid air instance with no defined state.
-* `with_state` - returns a new humid air instance with a defined state.
-* `update` - updates the state of the humid air.
-* `reset` - resets all properties.
-* `clone` - performs deep (full) copy of the humid air instance.
-* `dry_cooling_to_temperature` - the process of cooling without dehumidification to given temperature.
-* `dry_cooling_to_enthalpy` - the process of cooling without dehumidification to given enthalpy.
-* `wet_cooling_to_temperature_and_relative_humidity` - the process of cooling with dehumidification to given temperature and relative humidity ratio.
-* `wet_cooling_to_temperature_and_absolute_humidity` - the process of cooling with dehumidification to given temperature and absolute humidity ratio.
-* `wet_cooling_to_enthalpy_and_relative_humidity` - the process of cooling with dehumidification to given enthalpy and relative humidity ratio.
-* `wet_cooling_to_enthalpy_and_absolute_humidity` - the process of cooling with dehumidification to given enthalpy and absolute humidity ratio.
-* `heating_to_temperature` - the process of heating to given temperature.
-* `heating_to_enthalpy` - the process of heating to given enthalpy.
-* `humidification_by_water_to_relative_humidity` - the process of humidification by water (isenthalpic) to given relative humidity ratio.
-* `humidification_by_water_to_absolute_humidity` - the process of humidification by water (isenthalpic) to given absolute humidity ratio.
-* `humidification_by_steam_to_relative_humidity` - the process of humidification by steam (isothermal) to given relative humidity ratio.
-* `humidification_by_steam_to_absolute_humidity` - the process of humidification by steam (isothermal) to given absolute humidity ratio.
-* `mixing` - the mixing process.
-* `as_json` - converts the humid air instance to a JSON string.
-* `as_dict` - converts the humid air instance to a dict.
+- `factory` - returns a new humid air instance with no defined state
+- `with_state` - returns a new humid air instance with a defined state
+- `update` - updates the state of the humid air
+- `reset` - resets all properties
+- `clone` - performs deep (full) copy of the humid air instance
+- `dry_cooling_to_temperature` - the process of cooling without dehumidification to given temperature
+- `dry_cooling_to_enthalpy` - the process of cooling without dehumidification to given enthalpy
+- `wet_cooling_to_temperature_and_relative_humidity` - the process of cooling with dehumidification to given temperature and relative humidity ratio
+- `wet_cooling_to_temperature_and_absolute_humidity` - the process of cooling with dehumidification to given temperature and absolute humidity ratio
+- `wet_cooling_to_enthalpy_and_relative_humidity` - the process of cooling with dehumidification to given enthalpy and relative humidity ratio
+- `wet_cooling_to_enthalpy_and_absolute_humidity` - the process of cooling with dehumidification to given enthalpy and absolute humidity ratio
+- `heating_to_temperature` - the process of heating to given temperature
+- `heating_to_enthalpy` - the process of heating to given enthalpy
+- `humidification_by_water_to_relative_humidity` - the process of humidification by water (isenthalpic) to given relative humidity ratio
+- `humidification_by_water_to_absolute_humidity` - the process of humidification by water (isenthalpic) to given absolute humidity ratio
+- `humidification_by_steam_to_relative_humidity` - the process of humidification by steam (isothermal) to given relative humidity ratio
+- `humidification_by_steam_to_absolute_humidity` - the process of humidification by steam (isothermal) to given absolute humidity ratio
+- `mixing` - the mixing process
+- `as_json` - converts the humid air instance to a JSON string
+- `as_dict` - converts the humid air instance to a dict
 
 ## Examples
 
@@ -252,7 +252,7 @@ print(water_vapour.specific_heat)  # 2079.937085633241
 
 ### Incompressible binary mixtures
 
-To calculate the dynamic viscosity of propylene glycol aqueous solution 
+To calculate the dynamic viscosity of propylene glycol aqueous solution
 with _60 %_ mass fraction at _100 kPa_ and _-20 °C_:
 
 ```python
@@ -266,7 +266,7 @@ print(propylene_glycol.dynamic_viscosity)  # 0.13907391053938878
 
 ### Mixtures
 
-To calculate the density of ethanol aqueous solution (with ethanol _40 %_ mass fraction) 
+To calculate the density of ethanol aqueous solution (with ethanol _40 %_ mass fraction)
 at _200 kPa_ and _4 °C_:
 
 ```python
@@ -280,7 +280,7 @@ print(mixture.density)  # 883.3922771627963
 
 ### Humid air
 
-To calculate the wet bulb temperature of humid air 
+To calculate the wet bulb temperature of humid air
 at _300 m_ above sea level, _30 °C_ and _50 %_ relative humidity:
 
 ```python
@@ -334,20 +334,20 @@ print(refrigerant.as_json())
 
 As a result:
 
-```json5
+```json
 {
     "compressibility": 0.8266625877210833,
     "conductivity": 0.013435453854396475,
     "critical_pressure": 5782000.0,
     "critical_temperature": 78.10500000000002,
     "density": 25.89088151061046,
-    "dynamic_viscosity": 1.2606543144761657e-05,
+    "dynamic_viscosity": 1.2606543144761657e-5,
     "enthalpy": 516105.7800378023,
     "entropy": 2136.2654412978777,
     "fraction": 100,
     "freezing_temperature": null,
     "internal_energy": 479357.39743435377,
-    "kinematic_viscosity": 4.869105418289953e-07,
+    "kinematic_viscosity": 4.869105418289953e-7,
     "max_pressure": 70000000.0,
     "max_temperature": 161.85000000000002,
     "min_pressure": 47.999893876059375,
@@ -379,12 +379,12 @@ For example:
 from pyfluids import Fluid, FluidsList
 
 refrigerant = Fluid(FluidsList.R32).dew_point_at_temperature(5)
-print(refrigerant.as_dict())  # {'compressibility': 0.8266625877210833, 'conductivity': ... 
+print(refrigerant.as_dict())  # {'compressibility': 0.8266625877210833, 'conductivity': ...
 ```
 
 ### Deep cloning
 
-The `Fluid`, `Mixture` and `HumidAir` classes have a method `clone`, 
+The `Fluid`, `Mixture` and `HumidAir` classes have a method `clone`,
 which performs deep (full) copy of instance:
 
 ```python
@@ -401,10 +401,10 @@ print(origin == clone)  # False
 
 ### Adding other properties
 
-* [An example for the `Fluid` and `Mixture`](https://github.com/portyanikhin/PyFluids/blob/main/tests/fluids/test_fluid_extended.py).
-* [An example for the `HumidAir`](https://github.com/portyanikhin/PyFluids/blob/main/tests/humid_air/test_humid_air_extended.py).
+- [An example for the `Fluid` and `Mixture`](https://github.com/portyanikhin/PyFluids/blob/main/tests/fluids/test_fluid_extended.py)
+- [An example for the `HumidAir`](https://github.com/portyanikhin/PyFluids/blob/main/tests/humid_air/test_humid_air_extended.py)
 
 ### Adding other inputs
 
-* [An example for the `Fluid` and `Mixture`](https://github.com/portyanikhin/PyFluids/blob/main/tests/io/test_input_extended.py).
-* [An example for the `HumidAir`](https://github.com/portyanikhin/PyFluids/blob/main/tests/io/test_input_humid_air_extended.py).
+- [An example for the `Fluid` and `Mixture`](https://github.com/portyanikhin/PyFluids/blob/main/tests/io/test_input_extended.py)
+- [An example for the `HumidAir`](https://github.com/portyanikhin/PyFluids/blob/main/tests/io/test_input_humid_air_extended.py)
