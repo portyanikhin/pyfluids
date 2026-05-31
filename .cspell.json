@@ -1,0 +1,28 @@
+{
+  "allowCompoundWords": true,
+  "language": "en",
+  "dictionaries": ["python"],
+  "words": [
+    "coolprop",
+    "heos",
+    "hexafluoride",
+    "iconductivity",
+    "icpmass",
+    "icvmass",
+    "idmass",
+    "idmolar",
+    "ihmass",
+    "incomp",
+    "iphase",
+    "isenthalpic",
+    "isurface",
+    "iumass",
+    "iviscosity",
+    "portyanikhin",
+    "prandtl",
+    "pyfluids",
+    "pypa",
+    "thermophysical",
+    "unspecify"
+  ]
+}
