@@ -63,7 +63,16 @@ def pytest_basetemp() -> str:
 
 
 def tests() -> int:
-    return run(["uv", "run", "pytest", f"--basetemp={pytest_basetemp()}"])
+    return run(
+        [
+            "uv",
+            "run",
+            "pytest",
+            "-p",
+            "no:cacheprovider",
+            f"--basetemp={pytest_basetemp()}",
+        ]
+    )
 
 
 def coverage() -> int:
@@ -72,6 +81,8 @@ def coverage() -> int:
             "uv",
             "run",
             "pytest",
+            "-p",
+            "no:cacheprovider",
             f"--basetemp={pytest_basetemp()}",
             "--cov",
             "pyfluids",
