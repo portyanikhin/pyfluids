@@ -58,7 +58,7 @@ pip install pyfluids
 ## Units systems
 
 Using a configuration file, you can choose the units system
-that will be used in your project (for both inputs and outputs of `PyFluids`).
+that will be used in your project (for both inputs and outputs of `pyfluids`).
 
 ### Available units systems
 
