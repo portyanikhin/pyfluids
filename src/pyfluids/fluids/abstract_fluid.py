@@ -18,7 +18,7 @@ class AbstractFluid(ABC):
     @abstractmethod
     def __init__(self):
         """Base class of fluids."""
-        self._backend: AbstractState | None = None
+        self._backend: AbstractState
         self._inputs: list[Input] = []
         self.__compressibility: float | None = None
         self.__conductivity: float | None = None
