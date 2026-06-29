@@ -6,7 +6,7 @@ from .abstract_input import AbstractInput
 __all__ = ["InputHumidAir"]
 
 
-class InputHumidAir(AbstractInput):
+class InputHumidAir(AbstractInput[str]):
     """CoolProp keyed input for humid air."""
 
     def __init__(self, coolprop_key: str, value: float):

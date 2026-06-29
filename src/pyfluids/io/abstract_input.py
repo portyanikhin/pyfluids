@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Generic, TypeVar
+
+Key = TypeVar("Key", bound=int | str)
 
 
-class AbstractInput(ABC):
+class AbstractInput(Generic[Key], ABC):
     """Abstract CoolProp keyed input."""
 
     @abstractmethod
-    def __init__(self, coolprop_key: int | str, value: float):
+    def __init__(self, coolprop_key: Key, value: float):
         """
         Abstract CoolProp keyed input.
 
@@ -17,7 +20,7 @@ class AbstractInput(ABC):
         self.__coolprop_key, self.__value = coolprop_key, value
 
     @property
-    def coolprop_key(self) -> int | str:
+    def coolprop_key(self) -> Key:
         """CoolProp internal key."""
         return self.__coolprop_key
 
