@@ -60,10 +60,20 @@ class TestFluidsList:
             assert fluid.coolprop_name == "SulfurHexafluoride"
         elif fluid is FluidsList.R1150:
             assert fluid.coolprop_name == "Ethylene"
+        elif fluid is FluidsList.R1224ydZ:
+            assert fluid.coolprop_name == "R1224YDZ"
         elif fluid is FluidsList.R1270:
             assert fluid.coolprop_name == "Propylene"
         elif fluid is FluidsList.Butene:
             assert fluid.coolprop_name == "1-Butene"
+        elif fluid is FluidsList.AcetoneIncomp:
+            assert fluid.coolprop_name == "Acetone"
+        elif fluid is FluidsList.AirIncomp:
+            assert fluid.coolprop_name == "Air"
+        elif fluid is FluidsList.EthanolIncomp:
+            assert fluid.coolprop_name == "Ethanol"
+        elif fluid is FluidsList.HexaneIncomp:
+            assert fluid.coolprop_name == "Hexane"
         elif fluid is FluidsList.WaterIncomp:
             assert fluid.coolprop_name == "Water"
         else:
