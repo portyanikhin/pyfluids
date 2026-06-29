@@ -13,7 +13,7 @@ class TestInput:
             (Input.entropy(5e3), parameters.iSmass),
             (Input.internal_energy(1e4), parameters.iUmass),
             (Input.pressure(101325), parameters.iP),
-            (Input.quality(50), parameters.iQ),
+            (Input.quality(50), parameters.iQmass),
             (Input.specific_volume(1 / 999), parameters.iDmass),
             (Input.temperature(20), parameters.iT),
         ],

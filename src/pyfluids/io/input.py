@@ -79,7 +79,9 @@ class Input(AbstractInput[parameters]):
             [by default, %; you can change this using the configuration file].
         :return: Mass vapor quality for the input.
         """
-        return cls(parameters.iQ, UnitConverter().convert_decimal_fraction_to_si(value))
+        return cls(
+            parameters.iQmass, UnitConverter().convert_decimal_fraction_to_si(value)
+        )
 
     @classmethod
     def specific_volume(cls, value: float) -> Input:
