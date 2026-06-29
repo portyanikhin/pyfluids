@@ -259,7 +259,9 @@ class TestFluid:
         self.fluid = Fluid(name, fraction)
         self.fluid.update(
             Input.pressure(
-                10e6 if self.fluid.max_pressure is None else self.fluid.max_pressure
+                (10e6 if self.fluid.max_pressure is None else self.fluid.max_pressure)
+                if name != FluidsList.LiqNa
+                else 10e8
             ),
             Input.temperature(self.fluid.max_temperature),
         )
