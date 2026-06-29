@@ -234,7 +234,7 @@ class AbstractFluid(ABC):
         [by default, %; you can change this using the configuration file].
         """
         if self.__quality is None:
-            value = self._nullable_keyed_output(parameters.iQ)
+            value = self._nullable_keyed_output(parameters.iQmass)
             self.__quality = (
                 self._unit_converter.convert_decimal_fraction_from_si(value)
                 if value is not None
@@ -678,7 +678,8 @@ class AbstractFluid(ABC):
             value = self._keyed_output(coolprop_key)
             return (
                 None
-                if coolprop_key == parameters.iQ and (not 0 <= value <= 1)
+                if coolprop_key in (parameters.iQmass, parameters.iQ)
+                and (not 0 <= value <= 1)
                 else value
             )
         except ValueError:
