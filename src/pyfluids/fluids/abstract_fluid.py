@@ -4,9 +4,8 @@ import json
 from abc import ABC, abstractmethod
 from typing import Self, cast
 
-import CoolProp
 from CoolProp import AbstractState
-from CoolProp.CoolProp import generate_update_pair
+from CoolProp.CoolProp import generate_update_pair, parameters
 
 from ..config import UnitConverter, UnitsSystem
 from ..enums import Phases
@@ -61,21 +60,23 @@ class AbstractFluid(ABC):
     def compressibility(self) -> float | None:
         """Compressibility factor [-]."""
         if self.__compressibility is None:
-            self.__compressibility = self._nullable_keyed_output(CoolProp.iZ)
+            self.__compressibility = self._nullable_keyed_output(parameters.iZ)
         return self.__compressibility
 
     @property
     def conductivity(self) -> float | None:
         """Thermal conductivity [W/m/K]."""
         if self.__conductivity is None:
-            self.__conductivity = self._nullable_keyed_output(CoolProp.iconductivity)
+            self.__conductivity = self._nullable_keyed_output(parameters.iconductivity)
         return self.__conductivity
 
     @property
     def critical_pressure(self) -> float | None:
         """Absolute pressure at the critical point [Pa]."""
         if self.__critical_pressure is None:
-            self.__critical_pressure = self._nullable_keyed_output(CoolProp.iP_critical)
+            self.__critical_pressure = self._nullable_keyed_output(
+                parameters.iP_critical
+            )
         return self.__critical_pressure
 
     @property
@@ -85,7 +86,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__critical_temperature is None:
-            value = self._nullable_keyed_output(CoolProp.iT_critical)
+            value = self._nullable_keyed_output(parameters.iT_critical)
             self.__critical_temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -97,28 +98,30 @@ class AbstractFluid(ABC):
     def density(self) -> float:
         """Mass density [kg/m3]."""
         if self.__density is None:
-            self.__density = self._keyed_output(CoolProp.iDmass)
+            self.__density = self._keyed_output(parameters.iDmass)
         return self.__density
 
     @property
     def dynamic_viscosity(self) -> float | None:
         """Dynamic viscosity [Pa*s]."""
         if self.__dynamic_viscosity is None:
-            self.__dynamic_viscosity = self._nullable_keyed_output(CoolProp.iviscosity)
+            self.__dynamic_viscosity = self._nullable_keyed_output(
+                parameters.iviscosity
+            )
         return self.__dynamic_viscosity
 
     @property
     def enthalpy(self) -> float:
         """Mass specific enthalpy [J/kg]."""
         if self.__enthalpy is None:
-            self.__enthalpy = self._keyed_output(CoolProp.iHmass)
+            self.__enthalpy = self._keyed_output(parameters.iHmass)
         return self.__enthalpy
 
     @property
     def entropy(self) -> float:
         """Mass specific entropy [J/kg/K]."""
         if self.__entropy is None:
-            self.__entropy = self._keyed_output(CoolProp.iSmass)
+            self.__entropy = self._keyed_output(parameters.iSmass)
         return self.__entropy
 
     @property
@@ -128,7 +131,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__freezing_temperature is None:
-            value = self._nullable_keyed_output(CoolProp.iT_freeze)
+            value = self._nullable_keyed_output(parameters.iT_freeze)
             self.__freezing_temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -140,7 +143,7 @@ class AbstractFluid(ABC):
     def internal_energy(self) -> float:
         """Mass specific internal energy [J/kg]."""
         if self.__internal_energy is None:
-            self.__internal_energy = self._keyed_output(CoolProp.iUmass)
+            self.__internal_energy = self._keyed_output(parameters.iUmass)
         return self.__internal_energy
 
     @property
@@ -156,7 +159,7 @@ class AbstractFluid(ABC):
     def max_pressure(self) -> float | None:
         """Maximum pressure limit [Pa]."""
         if self.__max_pressure is None:
-            self.__max_pressure = self._nullable_keyed_output(CoolProp.iP_max)
+            self.__max_pressure = self._nullable_keyed_output(parameters.iP_max)
         return self.__max_pressure
 
     @property
@@ -166,7 +169,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__max_temperature is None:
-            value = self._keyed_output(CoolProp.iT_max)
+            value = self._keyed_output(parameters.iT_max)
             self.__max_temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -178,7 +181,7 @@ class AbstractFluid(ABC):
     def min_pressure(self) -> float | None:
         """Minimum pressure limit [Pa]."""
         if self.__min_pressure is None:
-            self.__min_pressure = self._nullable_keyed_output(CoolProp.iP_min)
+            self.__min_pressure = self._nullable_keyed_output(parameters.iP_min)
         return self.__min_pressure
 
     @property
@@ -188,7 +191,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__min_temperature is None:
-            value = self._keyed_output(CoolProp.iT_min)
+            value = self._keyed_output(parameters.iT_min)
             self.__min_temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -200,28 +203,28 @@ class AbstractFluid(ABC):
     def molar_mass(self) -> float | None:
         """Molar mass [kg/mol]."""
         if self.__molar_mass is None:
-            self.__molar_mass = self._nullable_keyed_output(CoolProp.imolar_mass)
+            self.__molar_mass = self._nullable_keyed_output(parameters.imolar_mass)
         return self.__molar_mass
 
     @property
     def phase(self) -> Phases:
         """Phase state."""
         if self.__phase is None:
-            self.__phase = Phases(self._keyed_output(CoolProp.iPhase))
+            self.__phase = Phases(self._keyed_output(parameters.iPhase))
         return self.__phase
 
     @property
     def prandtl(self) -> float | None:
         """Prandtl number [-]."""
         if self.__prandtl is None:
-            self.__prandtl = self._nullable_keyed_output(CoolProp.iPrandtl)
+            self.__prandtl = self._nullable_keyed_output(parameters.iPrandtl)
         return self.__prandtl
 
     @property
     def pressure(self) -> float:
         """Absolute pressure [Pa]."""
         if self.__pressure is None:
-            self.__pressure = self._keyed_output(CoolProp.iP)
+            self.__pressure = self._keyed_output(parameters.iP)
         return self.__pressure
 
     @property
@@ -231,7 +234,7 @@ class AbstractFluid(ABC):
         [by default, %; you can change this using the configuration file].
         """
         if self.__quality is None:
-            value = self._nullable_keyed_output(CoolProp.iQ)
+            value = self._nullable_keyed_output(parameters.iQ)
             self.__quality = (
                 self._unit_converter.convert_decimal_fraction_from_si(value)
                 if value is not None
@@ -243,14 +246,14 @@ class AbstractFluid(ABC):
     def sound_speed(self) -> float | None:
         """Sound speed [m/s]."""
         if self.__sound_speed is None:
-            self.__sound_speed = self._nullable_keyed_output(CoolProp.ispeed_sound)
+            self.__sound_speed = self._nullable_keyed_output(parameters.ispeed_sound)
         return self.__sound_speed
 
     @property
     def specific_heat(self) -> float:
         """Mass specific constant pressure specific heat [J/kg/K]."""
         if self.__specific_heat is None:
-            self.__specific_heat = self._keyed_output(CoolProp.iCpmass)
+            self.__specific_heat = self._keyed_output(parameters.iCpmass)
         return self.__specific_heat
 
     @property
@@ -263,7 +266,7 @@ class AbstractFluid(ABC):
         """Surface tension [N/m]."""
         if self.__surface_tension is None:
             self.__surface_tension = self._nullable_keyed_output(
-                CoolProp.isurface_tension
+                parameters.isurface_tension
             )
         return self.__surface_tension
 
@@ -274,7 +277,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__temperature is None:
-            value = self._keyed_output(CoolProp.iT)
+            value = self._keyed_output(parameters.iT)
             self.__temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -286,7 +289,7 @@ class AbstractFluid(ABC):
     def triple_pressure(self) -> float | None:
         """Absolute pressure at the triple point [Pa]."""
         if self.__triple_pressure is None:
-            self.__triple_pressure = self._nullable_keyed_output(CoolProp.iP_triple)
+            self.__triple_pressure = self._nullable_keyed_output(parameters.iP_triple)
         return self.__triple_pressure
 
     @property
@@ -296,7 +299,7 @@ class AbstractFluid(ABC):
         [by default, °C; you can change this using the configuration file].
         """
         if self.__triple_temperature is None:
-            value = self._nullable_keyed_output(CoolProp.iT_triple)
+            value = self._nullable_keyed_output(parameters.iT_triple)
             self.__triple_temperature = (
                 self._unit_converter.convert_temperature_from_si(value)
                 if value is not None
@@ -670,16 +673,18 @@ class AbstractFluid(ABC):
         values = [getattr(self, key) for key in keys]
         return {key: value for key, value in zip(keys, values)}
 
-    def _nullable_keyed_output(self, coolprop_key: int) -> float | None:
+    def _nullable_keyed_output(self, coolprop_key: parameters) -> float | None:
         try:
             value = self._keyed_output(coolprop_key)
             return (
-                None if coolprop_key == CoolProp.iQ and (not 0 <= value <= 1) else value
+                None
+                if coolprop_key == parameters.iQ and (not 0 <= value <= 1)
+                else value
             )
         except ValueError:
             return None
 
-    def _keyed_output(self, coolprop_key: int) -> float:
+    def _keyed_output(self, coolprop_key: parameters) -> float:
         cached_input = next(
             (i for i in self._inputs if i.coolprop_key == coolprop_key), None
         )

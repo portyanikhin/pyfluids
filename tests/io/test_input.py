@@ -1,5 +1,5 @@
-import CoolProp
 import pytest
+from CoolProp.CoolProp import parameters
 
 from pyfluids import Input
 
@@ -8,14 +8,14 @@ class TestInput:
     @pytest.mark.parametrize(
         "coolprop_input, coolprop_key",
         [
-            (Input.density(999), CoolProp.iDmass),
-            (Input.enthalpy(1e3), CoolProp.iHmass),
-            (Input.entropy(5e3), CoolProp.iSmass),
-            (Input.internal_energy(1e4), CoolProp.iUmass),
-            (Input.pressure(101325), CoolProp.iP),
-            (Input.quality(50), CoolProp.iQ),
-            (Input.specific_volume(1 / 999), CoolProp.iDmass),
-            (Input.temperature(20), CoolProp.iT),
+            (Input.density(999), parameters.iDmass),
+            (Input.enthalpy(1e3), parameters.iHmass),
+            (Input.entropy(5e3), parameters.iSmass),
+            (Input.internal_energy(1e4), parameters.iUmass),
+            (Input.pressure(101325), parameters.iP),
+            (Input.quality(50), parameters.iQ),
+            (Input.specific_volume(1 / 999), parameters.iDmass),
+            (Input.temperature(20), parameters.iT),
         ],
     )
     def test_coolprop_key_all_inputs_matches_with_coolprop(

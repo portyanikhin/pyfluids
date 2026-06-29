@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import CoolProp
+from CoolProp.CoolProp import parameters
 
 from ..config import UnitConverter
 from .abstract_input import AbstractInput
@@ -8,10 +8,10 @@ from .abstract_input import AbstractInput
 __all__ = ["Input"]
 
 
-class Input(AbstractInput):
+class Input(AbstractInput[parameters]):
     """CoolProp keyed input for fluids and mixtures."""
 
-    def __init__(self, coolprop_key: int, value: float):
+    def __init__(self, coolprop_key: parameters, value: float):
         """
         CoolProp keyed input for fluids and mixtures.
 
@@ -28,7 +28,7 @@ class Input(AbstractInput):
         :param value: The value of the input [kg/m3].
         :return: Mass density for the input.
         """
-        return cls(CoolProp.iDmass, value)
+        return cls(parameters.iDmass, value)
 
     @classmethod
     def enthalpy(cls, value: float) -> Input:
@@ -38,7 +38,7 @@ class Input(AbstractInput):
         :param value: The value of the input [J/kg].
         :return: Mass specific enthalpy for the input.
         """
-        return cls(CoolProp.iHmass, value)
+        return cls(parameters.iHmass, value)
 
     @classmethod
     def entropy(cls, value: float) -> Input:
@@ -48,7 +48,7 @@ class Input(AbstractInput):
         :param value: The value of the input [J/kg/K].
         :return: Mass specific entropy for the input.
         """
-        return cls(CoolProp.iSmass, value)
+        return cls(parameters.iSmass, value)
 
     @classmethod
     def internal_energy(cls, value: float) -> Input:
@@ -58,7 +58,7 @@ class Input(AbstractInput):
         :param value: The value of the input [J/kg].
         :return: Mass specific internal energy for the input.
         """
-        return cls(CoolProp.iUmass, value)
+        return cls(parameters.iUmass, value)
 
     @classmethod
     def pressure(cls, value: float) -> Input:
@@ -68,7 +68,7 @@ class Input(AbstractInput):
         :param value: The value of the input [Pa].
         :return: Absolute pressure for the input.
         """
-        return cls(CoolProp.iP, value)
+        return cls(parameters.iP, value)
 
     @classmethod
     def quality(cls, value: float) -> Input:
@@ -79,7 +79,7 @@ class Input(AbstractInput):
             [by default, %; you can change this using the configuration file].
         :return: Mass vapor quality for the input.
         """
-        return cls(CoolProp.iQ, UnitConverter().convert_decimal_fraction_to_si(value))
+        return cls(parameters.iQ, UnitConverter().convert_decimal_fraction_to_si(value))
 
     @classmethod
     def specific_volume(cls, value: float) -> Input:
@@ -89,7 +89,7 @@ class Input(AbstractInput):
         :param value: The value of the input [m3/kg].
         :return: Mass specific volume for the input.
         """
-        return cls(CoolProp.iDmass, 1 / value)
+        return cls(parameters.iDmass, 1 / value)
 
     @classmethod
     def temperature(cls, value: float) -> Input:
@@ -100,4 +100,4 @@ class Input(AbstractInput):
             [by default, °C; you can change this using the configuration file].
         :return: Temperature for the input.
         """
-        return cls(CoolProp.iT, UnitConverter().convert_temperature_to_si(value))
+        return cls(parameters.iT, UnitConverter().convert_temperature_to_si(value))

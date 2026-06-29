@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import CoolProp
+from CoolProp.CoolProp import parameters
 
 from pyfluids import Input
 
@@ -8,7 +8,7 @@ from pyfluids import Input
 class InputExtended(Input):
     """An example of how to extend the Input class."""
 
-    def __init__(self, coolprop_key: int, value: float):
+    def __init__(self, coolprop_key: parameters, value: float):
         """
         CoolProp keyed input for fluids and mixtures.
 
@@ -25,14 +25,14 @@ class InputExtended(Input):
         :param value: The value of the input [kg/mol].
         :return: Molar density for the input.
         """
-        return cls(CoolProp.iDmolar, value)
+        return cls(parameters.iDmolar, value)
 
 
 class TestInputExtended:
     input_extended = InputExtended.molar_density(9e2)
 
     def test_coolprop_key_new_input_matches_with_coolprop(self):
-        assert self.input_extended.coolprop_key == CoolProp.iDmolar
+        assert self.input_extended.coolprop_key == parameters.iDmolar
 
     def test_value_new_input_should_be_in_si_units(self):
         assert self.input_extended.value == 900
