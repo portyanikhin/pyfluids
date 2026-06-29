@@ -235,16 +235,16 @@ class FluidsList(Enum):
     IceNA = "IceNA", "INCOMP", False, Mix.Mass, 0.05, 0.35
     IcePG = "IcePG", "INCOMP", False, Mix.Mass, 0.05, 0.35
     LiBr = "LiBr", "INCOMP", False, Mix.Mass, 0, 0.75
-    MAM = "MAM", "INCOMP", False, Mix.Mass, 0, 0.3
-    MAM2 = "MAM2", "INCOMP", False, Mix.Mass, 0.078, 0.236
+    MAM = "MAM", "INCOMP", False, Mix.Mass, 0, 0.30
+    MAM2 = "MAM2", "INCOMP", False, Mix.Mass, 0.08, 0.24
     MCA = "MCA", "INCOMP", False, Mix.Mass, 0, 0.3
-    MCA2 = "MCA2", "INCOMP", False, Mix.Mass, 0.09, 0.294
+    MCA2 = "MCA2", "INCOMP", False, Mix.Mass, 0.09, 0.29
     MEA = "MEA", "INCOMP", False, Mix.Mass, 0, 0.6
     MEA2 = "MEA2", "INCOMP", False, Mix.Mass, 0.11, 0.6
     MEG = "MEG", "INCOMP", False, Mix.Mass, 0, 0.6
     MEG2 = "MEG2", "INCOMP", False, Mix.Mass, 0, 0.56
     MGL = "MGL", "INCOMP", False, Mix.Mass, 0, 0.6
-    MGL2 = "MGL2", "INCOMP", False, Mix.Mass, 0.195, 0.63
+    MGL2 = "MGL2", "INCOMP", False, Mix.Mass, 0.2, 0.63
     MITSW = "MITSW", "INCOMP", False, Mix.Mass, 0, 0.12
     MKA = "MKA", "INCOMP", False, Mix.Mass, 0, 0.45
     MKA2 = "MKA2", "INCOMP", False, Mix.Mass, 0.11, 0.41
@@ -253,32 +253,32 @@ class FluidsList(Enum):
     MKF = "MKF", "INCOMP", False, Mix.Mass, 0, 0.48
     MLI = "MLI", "INCOMP", False, Mix.Mass, 0, 0.24
     MMA = "MMA", "INCOMP", False, Mix.Mass, 0, 0.6
-    MMA2 = "MMA2", "INCOMP", False, Mix.Mass, 0.078, 0.474
+    MMA2 = "MMA2", "INCOMP", False, Mix.Mass, 0.08, 0.47
     MMG = "MMG", "INCOMP", False, Mix.Mass, 0, 0.3
-    MMG2 = "MMG2", "INCOMP", False, Mix.Mass, 0, 0.205
+    MMG2 = "MMG2", "INCOMP", False, Mix.Mass, 0, 0.21
     MNA = "MNA", "INCOMP", False, Mix.Mass, 0, 0.23
     MNA2 = "MNA2", "INCOMP", False, Mix.Mass, 0, 0.23
     MPG = "MPG", "INCOMP", False, Mix.Mass, 0, 0.6
     MPG2 = "MPG2", "INCOMP", False, Mix.Mass, 0.15, 0.57
-    VCA = "VCA", "INCOMP", False, Mix.Mass, 0.147, 0.299
-    VKC = "VKC", "INCOMP", False, Mix.Mass, 0.128, 0.389
+    VCA = "VCA", "INCOMP", False, Mix.Mass, 0.15, 0.3
+    VKC = "VKC", "INCOMP", False, Mix.Mass, 0.13, 0.39
     VMA = "VMA", "INCOMP", False, Mix.Mass, 0.1, 0.9
-    VMG = "VMG", "INCOMP", False, Mix.Mass, 0.072, 0.206
-    VNA = "VNA", "INCOMP", False, Mix.Mass, 0.07, 0.231
+    VMG = "VMG", "INCOMP", False, Mix.Mass, 0.07, 0.21
+    VNA = "VNA", "INCOMP", False, Mix.Mass, 0.07, 0.23
 
     # Incompressible volume-based binary mixtures
     AEG = "AEG", "INCOMP", False, Mix.Volume, 0.1, 0.6
-    AKF = "AKF", "INCOMP", False, Mix.Volume, 0.4
+    AKF = "AKF", "INCOMP", False, Mix.Volume, 0.4, 1
     AL = "AL", "INCOMP", False, Mix.Volume, 0.1, 0.6
     AN = "AN", "INCOMP", False, Mix.Volume, 0.1, 0.6
     APG = "APG", "INCOMP", False, Mix.Volume, 0.1, 0.6
     GKN = "GKN", "INCOMP", False, Mix.Volume, 0.1, 0.6
-    PK2 = "PK2", "INCOMP", False, Mix.Volume, 0.3
+    PK2 = "PK2", "INCOMP", False, Mix.Volume, 0.3, 1
     PKL = "PKL", "INCOMP", False, Mix.Volume, 0.1, 0.6
-    ZAC = "ZAC", "INCOMP", False, Mix.Volume, 0.06, 0.5
+    ZAC = "ZAC", "INCOMP", False, Mix.Volume, 0.06, 0.50
     ZFC = "ZFC", "INCOMP", False, Mix.Volume, 0.3, 0.6
     ZLC = "ZLC", "INCOMP", False, Mix.Volume, 0.3, 0.7
-    ZM = "ZM", "INCOMP", False, Mix.Volume
+    ZM = "ZM", "INCOMP", False, Mix.Volume, 0, 1
     ZMC = "ZMC", "INCOMP", False, Mix.Volume, 0.3, 0.7
 
     # Predefined mixtures
