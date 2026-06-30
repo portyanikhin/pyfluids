@@ -3,7 +3,7 @@ name = "pyfluids"
 version = "3.0.0"
 description = "CoolProp wrapper for Python"
 readme = "PyPI.md"
-requires-python = ">=3.11, <3.15"
+requires-python = ">=3.11"
 license = "MIT"
 authors = [{ name = "Vladimir Portyanikhin", email = "v.portyanikhin@ya.ru" }]
 keywords = [
